@@ -5,10 +5,6 @@ import (
 	"runtime"
 )
 
-// ErrNoGateway is returned if a valid gateway entry was not
-// found in the route table.
-type ErrNoGateway struct{}
-
 // ErrCantParse is returned if the route table is garbage.
 type ErrCantParse struct{}
 
@@ -24,10 +20,6 @@ type ErrInvalidRouteFileFormat struct {
 	row string
 }
 
-func (*ErrNoGateway) Error() string {
-	return "no gateway found"
-}
-
 func (*ErrCantParse) Error() string {
 	return "can't parse route table"
 }
@@ -37,5 +29,5 @@ func (*ErrNotImplemented) Error() string {
 }
 
 func (e *ErrInvalidRouteFileFormat) Error() string {
-	return fmt.Sprintf("invalid row %q in route file: doesn't have 11 fields", e.row)
+	return fmt.Sprintf("invalid row %q in route file", e.row)
 }
