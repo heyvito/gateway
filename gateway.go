@@ -183,7 +183,7 @@ func FindDefaultIPs() ([]netip.Addr, error) {
 				ip = ip4
 			}
 			if add, ok := netip.AddrFromSlice(ip); ok {
-				out = append(out, add)
+				out = append(out, add.WithZone(ifaceName))
 			}
 		}
 	}
